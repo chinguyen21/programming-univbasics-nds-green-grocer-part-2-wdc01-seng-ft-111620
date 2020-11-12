@@ -13,7 +13,6 @@ def apply_coupons(cart, coupons)
         new_hash[:clearance] = grocery_item[:clearance]
         new_hash[:count] = coupon[:num]
         cart << new_hash
-        break
       end
     end
   end
