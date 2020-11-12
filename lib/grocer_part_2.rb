@@ -6,7 +6,7 @@ def apply_coupons(cart, coupons)
   cart.each do |grocery_item|
     coupons.each do |coupon|
       new_hash = Hash.new(0)
-      if grocery_item[:item] == coupon[:item]
+      if grocery_item[:item] == coupon[:item] && grocery_item[:count] >= coupon[:num]
         grocery_item[:count] -= coupon[:num]
         new_hash[:item] = grocery_item[:item] + " W/COUPON"
         new_hash[:price] = coupon[:cost] / coupon[:num]
