@@ -1,9 +1,6 @@
 require_relative './part_1_solution.rb'
 
 def apply_coupons(cart, coupons)
-  # Consult README for inputs and outputs
-  #
-  # REMEMBER: This method **should** update cart
 
   new_hash = Hash.new(0)
   cart.each do |grocery_item|
@@ -26,11 +23,9 @@ def apply_coupons(cart, coupons)
 end
 
 def apply_clearance(cart)
-  # Consult README for inputs and outputs
-  #
-  # REMEMBER: This method **should** update cart
+
    cart.each do |grocery_item|
-    if grocery_item[:clearance] == true
+    if grocery_item[:clearance]
       grocery_item[:price] = (0.8 * grocery_item[:price]).round(2)
     end
   end
@@ -38,15 +33,6 @@ def apply_clearance(cart)
 end
 
 def checkout(cart, coupons)
-  # Consult README for inputs and outputs
-  #
-  # This method should call
-  # * consolidate_cart
-  # * apply_coupons
-  # * apply_clearance
-  #
-  # BEFORE it begins the work of calculating the total (or else you might have
-  # some irritated customers
   
   apply_coupons_cart = apply_coupons(consolidate_cart(cart), coupons)
   apply_clearance_cart = apply_clearance(apply_coupons_cart)
@@ -54,7 +40,7 @@ def checkout(cart, coupons)
   apply_clearance_cart.each do |grocery_item|
     total += grocery_item[:price] * grocery_item[:count]
   end
-  return total if total < 100
-  return 0.9 * total if total >= 100
-  
+ 
+  total *= 0.9 if total >= 100
+  total
 end
